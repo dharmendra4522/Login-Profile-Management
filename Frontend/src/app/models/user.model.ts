@@ -6,16 +6,3 @@ export interface User {
     phone: string;
     role: string;
 }
-
-export interface UserProfile {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    role: string;
-}
-
-export interface UserLogin {
-    email: string;
-    password: string;
-}

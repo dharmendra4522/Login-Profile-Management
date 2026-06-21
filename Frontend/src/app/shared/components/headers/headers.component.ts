@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-headers',
@@ -6,9 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./headers.component.css']
 })
 export class HeadersComponent {
-  userName: string = 'John Doe';
+
+  constructor(private router: Router) { }
+
+  @Input() userName = '';
 
   logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUserEmail');
+    this.router.navigate(['/login']);
     console.log('User logged out');
   }
 }

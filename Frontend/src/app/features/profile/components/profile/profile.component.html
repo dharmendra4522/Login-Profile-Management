@@ -1,14 +1,12 @@
-<app-headers></app-headers>
+<app-headers [userName]="currUser?.name || '' "></app-headers>
 
 <div class="container">
-    <div class="content">
-        <h2>Profile</h2>
-        
-        <div class="profile-info">
-            <p><strong>Name:</strong> {{ Name }}</p>
-            <p><strong>Email:</strong> {{ Email }}</p>
-            <p><strong>Phone Number:</strong> {{ Phone }}</p>
-            <p><strong>Role:</strong> {{ Role }}</p>
-        </div>
-    </div>
+  <div class="profile-card" *ngIf="currUser">
+    <h2>Welcome {{ currUser.name }}</h2>
+
+    <p><strong>Name:</strong> {{ currUser.name }}</p>
+    <p><strong>Email:</strong> {{ currUser.email }}</p>
+    <p><strong>Phone Number:</strong> {{ currUser.phone }}</p>
+    <p><strong>Role:</strong> {{ currUser.role }}</p>
+  </div>
 </div>
