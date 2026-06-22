@@ -18,4 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     ProfileComponent
   ]
 })
-export class ProfileModule { }
+export class ProfileModule { 
+  constructor() {
+    console.log('ProfileModule initialized');
+  }
+}

@@ -26,19 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    const enteredEmail = this.loginForm.value.email.trim().toLowerCase();
+    console.log("Submit button click hua!");
+
+    const enteredEmail = this.loginForm.value.email.trim();
     const enteredPassword = this.loginForm.value.password.toString().trim();
 
     this.authService.login(enteredEmail, enteredPassword).subscribe({
       next: (usersList: User[]) => {
-        const loggedInUser = usersList.find(
-          (user) =>
-            user.email.trim().toLowerCase() === enteredEmail &&
-            user.password.toString().trim() === enteredPassword
-        );
+        if (usersList && usersList.length > 0) {
+          const loggedInUser = usersList[0];
 
-        if (loggedInUser) {
           localStorage.setItem('token', 'dummy-token');
           localStorage.setItem('userId', loggedInUser.id.toString());
           localStorage.setItem('loggedInUserEmail', loggedInUser.email);
