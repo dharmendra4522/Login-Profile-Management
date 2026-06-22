@@ -17,7 +17,7 @@ export class AuthService {
 
 
   login(email: string, password: string): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+    return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${password.toString()}`);
   }
 
 

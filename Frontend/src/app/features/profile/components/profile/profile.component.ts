@@ -10,21 +10,28 @@ import { User } from 'src/app/models/user.model';
 export class ProfileComponent implements OnInit {
   currUser: User | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
 
   ngOnInit() {
+    this.loadUserProfile();
+  }
+
+  loadUserProfile() {
     const userId = localStorage.getItem('userId');
 
     if (userId) {
       this.authService.getProfile(userId).subscribe({
         next: (userData: User) => {
           this.currUser = userData;
+          console.log("User profile loaded successfully:", userData);
         },
-        error: (err) => { 
+        error: (err) => {
           console.log("Error to fetch data from DB", err);
         }
       });
+    } else {
+      console.log("No userId found in localStorage");
     }
   }
 }

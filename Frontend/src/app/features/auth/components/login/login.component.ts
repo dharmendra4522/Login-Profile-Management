@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Submit button click hua!"); 
     
     const enteredEmail = this.loginForm.value.email.trim().toLowerCase();
     const enteredPassword = this.loginForm.value.password.toString().trim();
