@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     ProfileComponent
@@ -20,6 +22,6 @@ import { SharedModule } from '../../shared/shared.module';
 })
 export class ProfileModule { 
   constructor() {
-    console.log('ProfileModule initialized');
+    console.log('ProfileModule loaded!');
   }
 }

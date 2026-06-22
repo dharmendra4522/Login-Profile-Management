@@ -4,7 +4,7 @@
             "id": 1,
             "name": "John Doe",
             "email": "john@test.com",
-            "password": "abcdef",
+            "password": "123abc",
             "phone": "9999999999",
             "role": "Admin"
         },
@@ -12,7 +12,7 @@
             "id": 2,
             "name": "Jane Smith",
             "email": "jane@test.com",
-            "password": "abcdef",
+            "password": "123abc",
             "phone": "8888888888",
             "role": "User"
         }

@@ -10,12 +10,14 @@ import { AuthService } from 'src/app/core/servies/auth.service';
 })
 export class HeadersComponent {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   @Input() userName = '';
-  
-  logout() {
-      this.authService.logout();
-      this.router.navigate(['/login']);
-    }
+
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
 }

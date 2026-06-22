@@ -25,17 +25,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  initLogin() {
+    return this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
   onSubmit() {
-    console.log("Submit button click hua!");
+    console.log('onSubmit called');
 
     const enteredEmail = this.loginForm.value.email.trim();
-    const enteredPassword = this.loginForm.value.password.toString().trim();
+    const enteredPassword = this.loginForm.value.password.trim();
 
     this.authService.login(enteredEmail, enteredPassword).subscribe({
       next: (usersList: User[]) => {
         if (usersList && usersList.length > 0) {
-          const loggedInUser = usersList[0];
-
+          const loggedInUser = usersList[0]; 
           localStorage.setItem('token', 'dummy-token');
           localStorage.setItem('userId', loggedInUser.id.toString());
           localStorage.setItem('loggedInUserEmail', loggedInUser.email);
@@ -48,7 +54,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         console.log('Error occurred during login:', err);
-      }
+      },
     });
   }
 }

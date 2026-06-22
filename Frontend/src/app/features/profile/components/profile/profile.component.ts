@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/servies/auth.service';
 import { User } from 'src/app/models/user.model';
 
@@ -8,30 +9,28 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+
   currUser: User | null = null;
 
-  constructor(private authService: AuthService) { }
-
+  constructor(private authService: AuthService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.loadUserProfile();
+    
   }
-
-  loadUserProfile() {
+  loadUserProfile(){
     const userId = localStorage.getItem('userId');
-
-    if (userId) {
-      this.authService.getProfile(userId).subscribe({
-        next: (userData: User) => {
-          this.currUser = userData;
-          console.log("User profile loaded successfully:", userData);
-        },
-        error: (err) => {
-          console.log("Error to fetch data from DB", err);
-        }
-      });
-    } else {
-      console.log("No userId found in localStorage");
-    }
+  if(userId){
+    this.authService.getProfile(userId).subscribe({
+      next: (userData: User) =>{
+        this.currUser = userData;
+        console.log("user profile load successfull", userData)
+      },
+      error: (err) =>{
+        console.log("Error to fetch data from DB", err);
+      }
+    })
+  }
+    
   }
 }
