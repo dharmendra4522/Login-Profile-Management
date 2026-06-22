@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/servies/auth.service';
 import { User } from 'src/app/models/user.model';
 
@@ -7,32 +7,21 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
-  Name: string = '';
-  Email: string = '';
-  Phone: string = '';
-  Role: string = '';
-
+export class ProfileComponent implements OnInit {
   currUser: User | null = null;
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    const loggedInEmail = localStorage.getItem('loggedInUserEmail');
-    const response = this.authService.getUser();
 
-    if (loggedInEmail) {
-      response.subscribe({
-        next: (allUsers) => {
-          for (let i = 0; i < allUsers.length; i++) {
-            if (allUsers[i].email === loggedInEmail) {
-              this.currUser = allUsers[i];
-              localStorage.setItem('userId', this.currUser.id.toString());
-              break;
-            }
-          }
+  ngOnInit() {
+    const userId = localStorage.getItem('userId');
+
+    if (userId) {
+      this.authService.getProfile(userId).subscribe({
+        next: (userData: User) => {
+          this.currUser = userData;
         },
-        error: (err) =>{
+        error: (err) => { 
           console.log("Error to fetch data from DB", err);
         }
       });
