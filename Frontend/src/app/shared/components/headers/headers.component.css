@@ -1,31 +1,317 @@
-.container {
+/* Main layout container using flexbox */
+:host {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1E293B;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  height: 100vh;
   width: 100%;
-  padding: 10px;
+  overflow: hidden;
+  font-family: 'Inter', 'Roboto', sans-serif;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-    
-button:hover {
-  background-color: #d32f2f;
+/* Premium Toolbar Styling */
+.main-toolbar {
+  height: 70px;
+  background: linear-gradient(95deg, #090d16 0%, #121829 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px !important;
+  z-index: 10;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
-h2 {
-  color: white;
+/* Toolbar Left: Brand & Menu Toggle */
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-trigger {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.menu-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #818cf8 !important;
+  transform: rotate(90deg);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo-icon {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 6px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Toolbar Right: User Avatar Badge */
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 14px 6px 6px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
+}
+
+.avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.user-role-text {
+  font-size: 10px;
+  font-weight: 500;
+  color: #818cf8;
+}
+
+/* Divider between badge and logout button in header */
+::ng-deep .header-divider.mat-divider {
+  border-right-color: rgba(255, 255, 255, 0.12) !important;
+  height: 24px !important;
+  align-self: center;
+}
+
+.logout-btn {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: all 0.2s !important;
+}
+
+.logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+/* Sidenav Container Styles */
+.sidenav-container {
+  flex: 1;
+  width: 100%;
+  background-color: #f1f5f9;
+}
+
+/* Custom Sidebar Styling */
+.custom-sidenav {
+  background-color: #090d16 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.sidenav-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.sidenav-header {
+  padding: 24px 20px 8px 20px;
+}
+
+.nav-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.sidenav-list {
+  padding-top: 8px !important;
+  flex-grow: 1;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item {
+  margin: 4px 16px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  overflow: hidden;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item .mat-mdc-list-item-title,
+::ng-deep .custom-sidenav .mat-mdc-list-item .nav-label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Hover style */
+::ng-deep .custom-sidenav .mat-mdc-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #ffffff !important;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item:hover .mat-mdc-list-item-title,
+::ng-deep .custom-sidenav .mat-mdc-list-item:hover .nav-label {
+  color: #ffffff !important;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item:hover .nav-icon {
+  color: #818cf8 !important;
+  transform: scale(1.05);
+}
+
+/* Active style (routerLinkActive) */
+::ng-deep .custom-sidenav .mat-mdc-list-item.active-item {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3) !important;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item.active-item .mat-mdc-list-item-title,
+::ng-deep .custom-sidenav .mat-mdc-list-item.active-item .nav-label {
+  color: #ffffff !important;
+}
+
+::ng-deep .custom-sidenav .mat-mdc-list-item.active-item .nav-icon {
+  color: #ffffff !important;
+}
+
+/* Icon & Label spacing in Sidenav */
+.nav-icon {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 16px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Sidenav list divider */
+::ng-deep .nav-divider.mat-divider {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  margin: 16px 20px !important;
+}
+
+/* Special exit list item */
+.logout-nav-item:hover {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+  color: #f87171 !important;
+}
+
+::ng-deep .custom-sidenav .logout-nav-item:hover .mat-mdc-list-item-title,
+::ng-deep .custom-sidenav .logout-nav-item:hover .nav-label {
+  color: #f87171 !important;
+}
+
+.logout-nav-item:hover .nav-icon {
+  color: #f87171 !important;
+}
+
+/* Sidebar Footer area */
+.sidenav-footer {
+  padding: 24px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.footer-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* Glowing green dot micro-animation */
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  position: relative;
+  display: inline-block;
+}
+
+.status-indicator-dot::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse-dot 1.5s infinite ease-out;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.footer-title {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+  margin: 0;
+}
+
+/* Content Area Wrapper */
+.content-wrapper {
+  background-color: #f8fafc !important;
+}
+
+.page-container {
+  padding: 32px 24px;
+  box-sizing: border-box;
+  min-height: 100%;
 }

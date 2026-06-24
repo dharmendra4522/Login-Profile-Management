@@ -1,0 +1,132 @@
+<div class="dashboard-container">
+  <!-- Welcome Banner -->
+  <div class="welcome-banner" *ngIf="currUser">
+    <div class="banner-text">
+      <h1>Welcome Back, {{ currUser.name }}!</h1>
+      <p>Manage your secure portal, check activity logs, and view your clearance details.</p>
+    </div>
+    <div class="banner-badge">
+      <mat-icon class="badge-icon">admin_panel_settings</mat-icon>
+      <span>{{ currUser.role }} Portal</span>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <!-- Stat 1: Profile -->
+    <mat-card class="stat-card mat-elevation-z2">
+      <mat-card-content class="stat-content">
+        <div class="stat-icon-wrapper profile-stat">
+          <mat-icon class="stat-icon">person</mat-icon>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Security Account</span>
+          <span class="stat-value">Active</span>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions class="stat-actions">
+        <a mat-button color="primary" routerLink="/profile">
+          <mat-icon class="action-btn-icon">arrow_forward</mat-icon> Manage Profile
+        </a>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Stat 2: Role / Clearance -->
+    <mat-card class="stat-card mat-elevation-z2" *ngIf="currUser">
+      <mat-card-content class="stat-content">
+        <div class="stat-icon-wrapper role-stat">
+          <mat-icon class="stat-icon">security</mat-icon>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Access Level</span>
+          <span class="stat-value">{{ currUser.role }}</span>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions class="stat-actions">
+        <button mat-button color="accent" disabled>
+          <mat-icon class="action-btn-icon">verified</mat-icon> Verified Clearance
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Stat 3: Last Login -->
+    <mat-card class="stat-card mat-elevation-z2">
+      <mat-card-content class="stat-content">
+        <div class="stat-icon-wrapper login-stat">
+          <mat-icon class="stat-icon">history</mat-icon>
+        </div>
+        <div class="stat-details">
+          <span class="stat-label">Session Initialization</span>
+          <span class="stat-value datetime-value">{{ lastLoginTime }}</span>
+        </div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions class="stat-actions">
+        <button mat-button color="primary">
+          <mat-icon class="action-btn-icon">sync</mat-icon> Session Logs
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Recent Activities & Quick Actions -->
+  <div class="dashboard-details">
+    <!-- Activity Card -->
+    <mat-card class="details-card mat-elevation-z2">
+      <mat-card-header class="details-header">
+        <mat-icon mat-card-avatar class="details-header-icon">checklist</mat-icon>
+        <mat-card-title>Recent Security Audits</mat-card-title>
+        <mat-card-subtitle>System security events logged during this cycle</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="details-content">
+        <mat-list class="activity-list">
+          <mat-list-item>
+            <mat-icon matListItemIcon class="activity-icon success">lock_open</mat-icon>
+            <span matListItemTitle class="activity-title">User Authentication Successful</span>
+            <span matListItemLine class="activity-time">Just now • Login from secure endpoint</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item>
+            <mat-icon matListItemIcon class="activity-icon info">verified_user</mat-icon>
+            <span matListItemTitle class="activity-title">Identity Profile Loaded</span>
+            <span matListItemLine class="activity-time">1 min ago • Metadata retrieved from directory</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item>
+            <mat-icon matListItemIcon class="activity-icon warning">security_update_good</mat-icon>
+            <span matListItemTitle class="activity-title">Security Token Issued</span>
+            <span matListItemLine class="activity-time">3 mins ago • Session duration set to 3600s</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Quick Actions Card -->
+    <mat-card class="actions-card mat-elevation-z2">
+      <mat-card-header class="details-header">
+        <mat-icon mat-card-avatar class="details-header-icon">bolt</mat-icon>
+        <mat-card-title>Quick Actions</mat-card-title>
+        <mat-card-subtitle>Accelerate portal management</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="actions-content">
+        <div class="action-buttons-grid">
+          <a mat-raised-button color="primary" class="action-btn" routerLink="/profile">
+            <mat-icon>manage_accounts</mat-icon> Edit Profile Info
+          </a>
+          <button mat-raised-button color="accent" class="action-btn">
+            <mat-icon>vpn_key</mat-icon> Update Credentials
+          </button>
+          <button mat-stroked-button class="action-btn outline-btn">
+            <mat-icon>settings</mat-icon> Settings Panel
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+{
+  "employees": [
+    {
+      "id": "EMP001",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice.smith@example.com",
+      "phone": "9876543210",
+      "department": "Engineering",
+      "salary": 85000,
+      "status": "active"
+    },
+    {
+      "id": "EMP002",
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "email": "bob.johnson@example.com",
+      "phone": "8765432109",
+      "department": "Marketing",
+      "salary": 60000,
+      "status": "active"
+    },
+    {
+      "id": "EMP003",
+      "firstName": "Charlie",
+      "lastName": "Brown",
+      "email": "charlie.brown@example.com",
+      "phone": "7654321098",
+      "department": "Human Resources",
+      "salary": 55000,
+      "status": "inactive"
+    },
+    {
+      "id": "EMP004",
+      "firstName": "Diana",
+      "lastName": "Prince",
+      "email": "diana.prince@example.com",
+      "phone": "6543210987",
+      "department": "Finance",
+      "salary": 95000,
+      "status": "active"
+    },
+    {
+      "id": "EMP005",
+      "firstName": "Evan",
+      "lastName": "Wright",
+      "email": "evan.wright@example.com",
+      "phone": "5432109876",
+      "department": "Engineering",
+      "salary": 78000,
+      "status": "active"
+    }
+  ]
+}

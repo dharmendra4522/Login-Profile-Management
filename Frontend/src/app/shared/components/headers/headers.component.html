@@ -1,6 +1,72 @@
-<div class="container">
-    <div class="content">
-        <h2>Welcome {{ userName ? userName : 'User' }}</h2>
-        <button (click)="logout()">Logout</button>
+<mat-toolbar class="main-toolbar mat-elevation-z3">
+  <!-- Left Side: Brand and Toggle -->
+  <div class="toolbar-left">
+    <button mat-icon-button type="button" (click)="sidenav.toggle()" class="menu-trigger" matTooltip="Toggle Sidebar">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="brand-container">
+      <mat-icon class="brand-logo-icon">shield</mat-icon>
+      <span class="brand-name">PortalManager</span>
     </div>
-</div>
+  </div>
+  
+  <span class="spacer"></span>
+  
+  <!-- Right Side: User Avatar & Actions -->
+  <div class="toolbar-right" *ngIf="userName">
+    <div class="user-profile-badge">
+      <div class="avatar-circle">
+        {{ userName.charAt(0).toUpperCase() }}
+      </div>
+      <div class="user-meta">
+        <span class="user-name-text">{{ userName }}</span>
+        <span class="user-role-text">Administrator</span>
+      </div>
+    </div>
+    <mat-divider [vertical]="true" class="header-divider"></mat-divider>
+    <button mat-icon-button (click)="logout()" class="logout-btn" matTooltip="Sign Out">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar Navigation -->
+  <mat-sidenav #sidenav open mode="side" class="custom-sidenav" [style.width]="'260px'">
+    <div class="sidenav-wrapper">
+      <div class="sidenav-header">
+        <span class="nav-section-title">MAIN NAVIGATION</span>
+      </div>
+      
+      <mat-nav-list class="sidenav-list">
+        <a mat-list-item *ngFor="let item of menu" [routerLink]="item.path" routerLinkActive="active-item" class="nav-item">
+          <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
+          <span matListItemTitle class="nav-label">{{ item.title }}</span>
+        </a>
+
+        <mat-divider class="nav-divider"></mat-divider>
+
+        <a mat-list-item (click)="logout()" class="nav-item logout-nav-item">
+          <mat-icon matListItemIcon class="nav-icon">exit_to_app</mat-icon>
+          <span matListItemTitle class="nav-label">Log Out</span>
+        </a>
+      </mat-nav-list>
+
+      <div class="sidenav-footer">
+        <div class="footer-status-badge">
+          <span class="status-indicator-dot"></span>
+          <span>System Online</span>
+        </div>
+        <p class="footer-title">Secure Portal v1.0.0</p>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content class="content-wrapper">
+    <div class="page-container">
+      <!-- Child router outlets render here -->
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

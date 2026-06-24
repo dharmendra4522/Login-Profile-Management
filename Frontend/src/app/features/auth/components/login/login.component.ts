@@ -11,6 +11,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  hidePassword = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,10 +47,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userId', loggedInUser.id.toString());
           localStorage.setItem('loggedInUserEmail', loggedInUser.email);
 
-          alert('Login Successful!');
+          console.info('Login Successful!');
           this.router.navigate(['/profile']);
         } else {
-          alert('Invalid email or password');
+          console.warn('Invalid email or password');
         }
       },
       error: (err) => {

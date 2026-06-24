@@ -10,7 +10,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class AuthService {
 
-  apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient, private router: Router) { }
 

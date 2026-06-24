@@ -1,12 +1,49 @@
-<app-headers [userName]="currUser?.name || '' "></app-headers>
-
 <div class="container">
-  <div class="profile-card" *ngIf="currUser">
-    <h2>Welcome {{ currUser.name }}</h2>
+  
+  <mat-card class="profile-card" *ngIf="currUser">
+    <mat-card-header class="profile-header">
+      <div mat-card-avatar class="profile-avatar-container">
+        <mat-icon class="profile-avatar-icon">account_circle</mat-icon>
+      </div>
+      <mat-card-title class="profile-title">Welcome, {{ currUser.name }}</mat-card-title>
+      <mat-card-subtitle class="profile-subtitle">User Profile Account</mat-card-subtitle>
+    </mat-card-header>
 
-    <p><strong>Name:</strong> {{ currUser.name }}</p>
-    <p><strong>Email:</strong> {{ currUser.email }}</p>
-    <p><strong>Phone Number:</strong> {{ currUser.phone }}</p>
-    <p><strong>Role:</strong> {{ currUser.role }}</p>
-  </div>
+    <mat-card-content class="profile-content">
+      <mat-list class="profile-details-list">
+        
+        <mat-list-item>
+          <mat-icon matListItemIcon class="detail-icon">person</mat-icon>
+          <span matListItemTitle class="detail-label">Full Name</span>
+          <span matListItemLine class="detail-value">{{ currUser.name }}</span>
+        </mat-list-item>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>
+          <mat-icon matListItemIcon class="detail-icon">email</mat-icon>
+          <span matListItemTitle class="detail-label">Email Address</span>
+          <span matListItemLine class="detail-value">{{ currUser.email }}</span>
+        </mat-list-item>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>
+          <mat-icon matListItemIcon class="detail-icon">phone</mat-icon>
+          <span matListItemTitle class="detail-label">Phone Number</span>
+          <span matListItemLine class="detail-value">{{ currUser.phone }}</span>
+        </mat-list-item>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>
+          <mat-icon matListItemIcon class="detail-icon">admin_panel_settings</mat-icon>
+          <span matListItemTitle class="detail-label">Access Role</span>
+          <span matListItemLine class="detail-value role-badge">{{ currUser.role }}</span>
+        </mat-list-item>
+        
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
 </div>
